@@ -60,13 +60,27 @@ public class UIAppManager : Singleton<UIAppManager>
     private Text[] FooterText;
     //HomeFooter
 
+    //SmallPanels
+    [SerializeField]
+    private GameObject ResetAllProgressPanel;
+    [SerializeField]
+    private GameObject ChangePasswordPanel;
+    [SerializeField]
+    private GameObject EditWeighPanel;
+    [SerializeField]
+    private GameObject EditTallPanel;
+    [SerializeField]
+    private GameObject EditAgePanel;
+    //SmallPanels
+
     [SerializeField]
     private GameObject Panels;
     [SerializeField]
     private GameObject ChoosePanels;
     [SerializeField]
     private GameObject HomePanels;
-
+    [SerializeField]
+    private GameObject ProfilePanels;
 
     [SerializeField]
     private GameObject LoginPanel;
@@ -89,9 +103,9 @@ public class UIAppManager : Singleton<UIAppManager>
     {
         OnboardPanel.SetActive(true);
         var boardColor = BoardParent.GetComponent<CanvasGroup>();
-        BoardParent.transform.LeanMoveLocal(new Vector2(-1920f, 0f), 0.15f).setEaseOutExpo();
+        BoardParent.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.15f).setEaseOutExpo();
         BoardLittleCircle.transform.localScale = new Vector2(0f, 0f);
-        BoardLittleCircle.transform.LeanMoveLocal(new Vector2(0f, -564.7999f), 0f);
+        BoardLittleCircle.transform.LeanMoveLocal(new Vector2(0f, 0f), 0f);
         BoardLittleCircle.transform.LeanScale(new Vector2(1f, 1f), 0.2f);
         boardColor.alpha = 0f;
         boardColor.LeanAlpha(1f, 0.15f);
@@ -100,9 +114,9 @@ public class UIAppManager : Singleton<UIAppManager>
     public void OnBoard_2()
     {
         var boardColor = BoardParent.GetComponent<CanvasGroup>();
-        BoardParent.transform.LeanMoveLocal(new Vector2(-1920f*2, 0f), 0.15f).setEaseOutExpo();
+        BoardParent.transform.LeanMoveLocal(new Vector2(-1440f * 2, 0f), 0.15f).setEaseOutExpo();
         BoardLittleCircle.transform.localScale = new Vector2(0f, 0f);
-        BoardLittleCircle.transform.LeanMoveLocal(new Vector2(100f, -564.7999f), 0f);
+        BoardLittleCircle.transform.LeanMoveLocal(new Vector2(100f, 0f), 0f);
         BoardLittleCircle.transform.LeanScale(new Vector2(1f, 1f), 0.2f);
         boardColor.alpha = 0f;
         boardColor.LeanAlpha(1f, 0.15f);
@@ -144,6 +158,13 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowLogin()
     {
+        if (!Panels.activeInHierarchy)
+        {
+            Panels.SetActive(false);
+            HomePanels.SetActive(false);
+        }
+
+
         var panelsColor = Panels.GetComponent<CanvasGroup>();
         Panels.transform.LeanMoveLocal(new Vector2(-2880f, 0f), 0.1f);
         panelsColor.alpha = 0f;
@@ -151,6 +172,12 @@ public class UIAppManager : Singleton<UIAppManager>
     }
     public void ShowRegister()
     {
+        if (!Panels.activeInHierarchy)
+        {
+            Panels.SetActive(false);
+            HomePanels.SetActive(false);
+        }
+
         var panelsColor = Panels.GetComponent<CanvasGroup>();
         Panels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.1f);
         panelsColor.alpha = 0f;
@@ -165,6 +192,12 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowResetPasswordPassword()
     {
+        if (!Panels.activeInHierarchy)
+        {
+            Panels.SetActive(false);
+            HomePanels.SetActive(false);
+        }
+
         var panelsColor = Panels.GetComponent<CanvasGroup>();
         Panels.transform.LeanMoveLocal(new Vector2(-4320f, 0f), 0.1f);
         panelsColor.alpha = 0f;
@@ -227,7 +260,7 @@ public class UIAppManager : Singleton<UIAppManager>
         ChoosePanels.transform.LeanMoveLocal(new Vector2(-5760f, 0f), 0.1f);
         panelsColor.alpha = 0f;
         panelsColor.LeanAlpha(1f, 0.15f);
-        ChooseLittleSlider.SetActive(false);
+        ChooseLittleSlider.transform.parent.gameObject.SetActive(false);
         ChooseText.gameObject.SetActive(false);
     }
 
@@ -256,6 +289,12 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowProfile()
     {
+        if (!HomePanels.activeInHierarchy)
+        {
+            HomePanels.SetActive(true);
+            ProfilePanels.SetActive(false);
+        }
+
         var panelsColor = HomePanels.GetComponent<CanvasGroup>();
         HomePanels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.1f);
         panelsColor.alpha = 0f;
@@ -308,6 +347,123 @@ public class UIAppManager : Singleton<UIAppManager>
         FooterText[3].color = new Color(196f / 255f, 148f / 255f, 48f / 255f); 
     }
 
+    public void ShowProfileInformation()
+    {
+        ProfilePanels.SetActive(true);
+        HomePanels.SetActive(false);
+
+        var panelsColor = ProfilePanels.GetComponent<CanvasGroup>();
+        ProfilePanels.transform.LeanMoveLocal(new Vector2(0f, 0f), 0.1f);
+        panelsColor.alpha = 0f;
+        panelsColor.LeanAlpha(1f, 0.15f);
+    }
+
+    public void ShowStatistics()
+    {
+        ProfilePanels.SetActive(true);
+        HomePanels.SetActive(false);
+
+        var panelsColor = ProfilePanels.GetComponent<CanvasGroup>();
+        ProfilePanels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.1f);
+        panelsColor.alpha = 0f;
+        panelsColor.LeanAlpha(1f, 0.15f);
+    }
+
+    public void ShowResetAllProgress(bool on)
+    {
+
+        var panelsColor = ResetAllProgressPanel.GetComponent<CanvasGroup>();
+        if (on)
+        {
+            ResetAllProgressPanel.SetActive(true);
+            panelsColor.alpha = 0f;
+            panelsColor.LeanAlpha(1f, 0.4f);
+        }
+        else
+        {
+            panelsColor.alpha = 1f;
+            panelsColor.LeanAlpha(0f, 0.4f);
+            ResetAllProgressPanel.SetActive(false);
+        }
+
+    }
+
+    public void ShowChangePassword(bool on)
+    {
+
+        var panelsColor = ChangePasswordPanel.GetComponent<CanvasGroup>();
+        if (on)
+        {
+            ChangePasswordPanel.SetActive(true);
+            panelsColor.alpha = 0f;
+            panelsColor.LeanAlpha(1f, 0.4f);
+        }
+        else
+        {
+            panelsColor.alpha = 1f;
+            panelsColor.LeanAlpha(0f, 0.4f);
+            ChangePasswordPanel.SetActive(false);
+        }
+
+    }
+
+    public void ShowEditWeigh(bool on)
+    {
+
+        var panelsColor = EditWeighPanel.GetComponent<CanvasGroup>();
+        if (on)
+        {
+            EditWeighPanel.SetActive(true);
+            panelsColor.alpha = 0f;
+            panelsColor.LeanAlpha(1f, 0.4f);
+        }
+        else
+        {
+            panelsColor.alpha = 1f;
+            panelsColor.LeanAlpha(0f, 0.4f);
+            EditWeighPanel.SetActive(false);
+        }
+
+    }
+
+    public void ShowEditTall(bool on)
+    {
+
+        var panelsColor = EditTallPanel.GetComponent<CanvasGroup>();
+        if (on)
+        {
+            EditTallPanel.SetActive(true);
+            panelsColor.alpha = 0f;
+            panelsColor.LeanAlpha(1f, 0.4f);
+        }
+        else
+        {
+            panelsColor.alpha = 1f;
+            panelsColor.LeanAlpha(0f, 0.4f);
+            EditTallPanel.SetActive(false);
+        }
+
+    }
+
+
+    public void ShowEditAge(bool on)
+    {
+
+        var panelsColor = EditAgePanel.GetComponent<CanvasGroup>();
+        if (on)
+        {
+            EditAgePanel.SetActive(true);
+            panelsColor.alpha = 0f;
+            panelsColor.LeanAlpha(1f, 0.4f);
+        }
+        else
+        {
+            panelsColor.alpha = 1f;
+            panelsColor.LeanAlpha(0f, 0.4f);
+            EditAgePanel.SetActive(false);
+        }
+
+    }
     public void DisableCanvas()
     {
         if (Canvas.activeInHierarchy)
