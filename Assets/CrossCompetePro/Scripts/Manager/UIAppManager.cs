@@ -38,6 +38,11 @@ public class UIAppManager : Singleton<UIAppManager>
     private Slider WeightSlider;
     [SerializeField]
     private Text WeightText;
+
+    [SerializeField]
+    private Slider EditWeightSlider;
+    [SerializeField]
+    private Text EditWeightText;
     //ChooseYourWeight
 
     //ChooseYourWeight
@@ -47,6 +52,11 @@ public class UIAppManager : Singleton<UIAppManager>
     private Slider TallSlider;
     [SerializeField]
     private Text TallText;
+
+    [SerializeField]
+    private Slider EditTallSlider;
+    [SerializeField]
+    private Text EditTallText;
     //ChooseYourWeight
 
     //HomeFooter
@@ -74,6 +84,9 @@ public class UIAppManager : Singleton<UIAppManager>
     //SmallPanels
 
     [SerializeField]
+    private GameObject feedbackPanel;
+
+    [SerializeField]
     private GameObject Panels;
     [SerializeField]
     private GameObject ChoosePanels;
@@ -81,6 +94,10 @@ public class UIAppManager : Singleton<UIAppManager>
     private GameObject HomePanels;
     [SerializeField]
     private GameObject ProfilePanels;
+    [SerializeField]
+    private GameObject TimerPanels;
+    [SerializeField]
+    private GameObject SettingsPanels;
 
     [SerializeField]
     private GameObject LoginPanel;
@@ -90,36 +107,43 @@ public class UIAppManager : Singleton<UIAppManager>
     private GameObject ResetPanel;
     [SerializeField]
     private GameObject Home;
-
+    [SerializeField]
+    private GameObject Profile;
+    [SerializeField]
+    private GameObject Timer;
+    [SerializeField]
+    private GameObject Settings;
 
 
     private void Update()
     {
         WeightText.text = WeightSlider.value + " Kg";
         TallText.text = TallSlider.value + " Cm";
+        EditWeightText.text = EditWeightSlider.value + " Kg";
+        EditTallText.text = EditTallSlider.value + " Cm";
     }
 
     public void OnBoard_1()
     {
         OnboardPanel.SetActive(true);
-        var boardColor = BoardParent.GetComponent<CanvasGroup>();
+        //var boardColor = BoardParent.GetComponent<CanvasGroup>();
         BoardParent.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.15f).setEaseOutExpo();
         BoardLittleCircle.transform.localScale = new Vector2(0f, 0f);
         BoardLittleCircle.transform.LeanMoveLocal(new Vector2(0f, 0f), 0f);
         BoardLittleCircle.transform.LeanScale(new Vector2(1f, 1f), 0.2f);
-        boardColor.alpha = 0f;
-        boardColor.LeanAlpha(1f, 0.15f);
+        //boardColor.alpha = 0f;
+        //boardColor.LeanAlpha(1f, 0.15f);
     }
 
     public void OnBoard_2()
     {
-        var boardColor = BoardParent.GetComponent<CanvasGroup>();
+        //var boardColor = BoardParent.GetComponent<CanvasGroup>();
         BoardParent.transform.LeanMoveLocal(new Vector2(-1440f * 2, 0f), 0.15f).setEaseOutExpo();
         BoardLittleCircle.transform.localScale = new Vector2(0f, 0f);
         BoardLittleCircle.transform.LeanMoveLocal(new Vector2(100f, 0f), 0f);
         BoardLittleCircle.transform.LeanScale(new Vector2(1f, 1f), 0.2f);
-        boardColor.alpha = 0f;
-        boardColor.LeanAlpha(1f, 0.15f);
+       // boardColor.alpha = 0f;
+        //boardColor.LeanAlpha(1f, 0.15f);
     }
 
     public void OnBoard_3()
@@ -270,10 +294,10 @@ public class UIAppManager : Singleton<UIAppManager>
         ChooseParentPanel.SetActive(false);
         Home.SetActive(true);
 
-        var panelsColor = HomePanels.GetComponent<CanvasGroup>();
-        HomePanels.transform.LeanMoveLocal(new Vector2(0f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+       // var panelsColor = HomePanels.GetComponent<CanvasGroup>();
+        HomePanels.transform.LeanMoveLocal(new Vector2(0f, 0f), 0.15f);
+        //panelsColor.alpha = 0f;
+       // panelsColor.LeanAlpha(1f, 0.15f);
 
 
         //SetBtnColor
@@ -289,16 +313,16 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowProfile()
     {
-        if (!HomePanels.activeInHierarchy)
+        if (!Home.activeInHierarchy)
         {
-            HomePanels.SetActive(true);
-            ProfilePanels.SetActive(false);
+            Home.SetActive(true);
+            Profile.SetActive(false);
         }
 
-        var panelsColor = HomePanels.GetComponent<CanvasGroup>();
-        HomePanels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+       // var panelsColor = HomePanels.GetComponent<CanvasGroup>();
+        HomePanels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.15f);
+       // panelsColor.alpha = 0f;
+       // panelsColor.LeanAlpha(1f, 0.15f);
 
         //SetBtnColor
         for (int i = 0; i < FooterImg.Length; i++)
@@ -313,10 +337,16 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowTimer()
     {
-        var panelsColor = HomePanels.GetComponent<CanvasGroup>();
-        HomePanels.transform.LeanMoveLocal(new Vector2(-2880f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+
+        Timer.SetActive(false);
+        Home.SetActive(true);
+        
+
+
+       // var panelsColor = HomePanels.GetComponent<CanvasGroup>();
+        HomePanels.transform.LeanMoveLocal(new Vector2(-2880f, 0f), 0.15f);
+     //   panelsColor.alpha = 0f;
+      //  panelsColor.LeanAlpha(1f, 0.15f);
 
 
         //SetBtnColor
@@ -331,10 +361,17 @@ public class UIAppManager : Singleton<UIAppManager>
     }
     public void ShowSettings()
     {
-        var panelsColor = HomePanels.GetComponent<CanvasGroup>();
-        HomePanels.transform.LeanMoveLocal(new Vector2(-4320f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+
+
+        Settings.SetActive(false);
+        Home.SetActive(true);
+        
+
+
+       // var panelsColor = HomePanels.GetComponent<CanvasGroup>();
+        HomePanels.transform.LeanMoveLocal(new Vector2(-4320f, 0f), 0.15f);
+      //  panelsColor.alpha = 0f;
+      //  panelsColor.LeanAlpha(1f, 0.15f);
 
         //SetBtnColor
         for (int i = 0; i < FooterImg.Length; i++)
@@ -349,24 +386,28 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowProfileInformation()
     {
-        ProfilePanels.SetActive(true);
-        HomePanels.SetActive(false);
 
-        var panelsColor = ProfilePanels.GetComponent<CanvasGroup>();
-        ProfilePanels.transform.LeanMoveLocal(new Vector2(0f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        Profile.SetActive(true);
+        Home.SetActive(false);
+        
+
+      //  var panelsColor = ProfilePanels.GetComponent<CanvasGroup>();
+        ProfilePanels.transform.LeanMoveLocal(new Vector2(0f, 0f), 0.15f);
+       // panelsColor.alpha = 0f;
+       // panelsColor.LeanAlpha(1f, 0.15f);
     }
 
     public void ShowStatistics()
     {
-        ProfilePanels.SetActive(true);
-        HomePanels.SetActive(false);
 
-        var panelsColor = ProfilePanels.GetComponent<CanvasGroup>();
-        ProfilePanels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        Profile.SetActive(true);
+        Home.SetActive(false);
+ 
+
+       // var panelsColor = ProfilePanels.GetComponent<CanvasGroup>();
+        ProfilePanels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.15f);
+       // panelsColor.alpha = 0f;
+       // panelsColor.LeanAlpha(1f, 0.15f);
     }
 
     public void ShowResetAllProgress(bool on)
@@ -464,6 +505,170 @@ public class UIAppManager : Singleton<UIAppManager>
         }
 
     }
+
+
+    public void ShowCounter()
+    {
+        Timer.SetActive(true);
+        Home.SetActive(false);
+      
+
+        //var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        TimerPanels.transform.LeanMoveLocal(new Vector2(0f, 0f), 0.15f);
+        //panelsColor.alpha = 0f;
+       // panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowAMRAP()
+    {
+        Timer.SetActive(true);
+        Home.SetActive(false);
+
+
+        //var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        TimerPanels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.15f);
+      //  panelsColor.alpha = 0f;
+       // panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowForTime()
+    {
+        Timer.SetActive(true);
+        Home.SetActive(false);
+
+
+       // var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        TimerPanels.transform.LeanMoveLocal(new Vector2(-2880f, 0f), 0.15f);
+       // panelsColor.alpha = 0f;
+      //  panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowEMOM()
+    {
+        Timer.SetActive(true);
+        Home.SetActive(false);
+
+
+        // var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        TimerPanels.transform.LeanMoveLocal(new Vector2(-4320f, 0f), 0.15f);
+        // panelsColor.alpha = 0f;
+        //  panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowTABATA()
+    {
+        Timer.SetActive(true);
+        Home.SetActive(false);
+
+
+        // var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        TimerPanels.transform.LeanMoveLocal(new Vector2(-5760f, 0f), 0.15f);
+        // panelsColor.alpha = 0f;
+        //  panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowPremium()
+    {
+        Settings.SetActive(true);
+        Home.SetActive(false);
+
+
+        // var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        Settings.transform.LeanMoveLocal(new Vector2(0f, 0f), 0.15f);
+        // panelsColor.alpha = 0f;
+        //  panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowChangeYourPlane()
+    {
+        Settings.SetActive(true);
+        Home.SetActive(false);
+
+
+        // var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        Settings.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.15f);
+        // panelsColor.alpha = 0f;
+        //  panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowFeedback(bool on)
+    {
+
+        var panelsColor = feedbackPanel.GetComponent<CanvasGroup>();
+        if (on)
+        {
+            feedbackPanel.SetActive(true);
+            panelsColor.alpha = 0f;
+            panelsColor.LeanAlpha(1f, 0.4f);
+        }
+        else
+        {
+            panelsColor.alpha = 1f;
+            panelsColor.LeanAlpha(0f, 0.4f);
+            feedbackPanel.SetActive(false);
+        }
+
+    }
+
+    public void ShowContactUs()
+    {
+        Settings.SetActive(true);
+        Home.SetActive(false);
+
+
+        // var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        Settings.transform.LeanMoveLocal(new Vector2(-2880f, 0f), 0.15f);
+        // panelsColor.alpha = 0f;
+        //  panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowAboutUs()
+    {
+        Settings.SetActive(true);
+        Home.SetActive(false);
+
+
+        // var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        Settings.transform.LeanMoveLocal(new Vector2(-4320f, 0f), 0.15f);
+        // panelsColor.alpha = 0f;
+        //  panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowFQA()
+    {
+        Settings.SetActive(true);
+        Home.SetActive(false);
+
+
+        // var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        Settings.transform.LeanMoveLocal(new Vector2(-5760f, 0f), 0.15f);
+        // panelsColor.alpha = 0f;
+        //  panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
+    public void ShowPrivacyPolicy()
+    {
+        Settings.SetActive(true);
+        Home.SetActive(false);
+
+
+        // var panelsColor = TimerPanels.GetComponent<CanvasGroup>();
+        Settings.transform.LeanMoveLocal(new Vector2(-7200f, 0f), 0.15f);
+        // panelsColor.alpha = 0f;
+        //  panelsColor.LeanAlpha(1f, 0.15f);
+
+    }
+
     public void DisableCanvas()
     {
         if (Canvas.activeInHierarchy)

@@ -28,7 +28,7 @@ public class LoadingManager : MonoBehaviour
         panelsColor = LoadingPanel.GetComponent<CanvasGroup>();
         Logo.LeanMoveLocal(new Vector2(0f, 25f), 0.8f).setEaseOutQuart().setLoopPingPong();
         StartLoading();
-        StopLoading();
+       // StopLoading();
     }
 
 

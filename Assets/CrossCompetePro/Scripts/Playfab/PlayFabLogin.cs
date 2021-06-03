@@ -95,24 +95,25 @@ public class PlayFabLogin : Singleton<PlayFabLogin>
     #region CallBacks
     private void OnLoginSuccess(LoginResult result)
     {
-        LoadingManager.instance.StopLoading();
+
         Debug.Log("Congratulations, you made your first successful API call!");
         PlayerPrefs.SetString("EMAIL", userEmail);
         PlayerPrefs.SetString("PASSWORD", userPassword);
 
         UIAppManager.instance.ShowHome();
+        LoadingManager.instance.StopLoading();
     }
 
     private void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
-        LoadingManager.instance.StopLoading();
+
         Debug.Log("Congratulations, you made your first successful API call!");
         PlayerPrefs.SetString("EMAIL", userEmail);
         PlayerPrefs.SetString("PASSWORD", userConfirmPassword);
         UpdateContactEmail();
 
         UIAppManager.instance.ShowChooseWeight();
-        
+        LoadingManager.instance.StopLoading();
     }
 
     private void OnLoginFailure(PlayFabError error)

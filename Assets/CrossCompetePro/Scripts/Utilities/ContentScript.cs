@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,10 +34,13 @@ public class ContentScript : MonoBehaviour
 
     public void OnExerciseLoad()
     {
+
+
         children = gameObject.GetComponentsInChildren<Transform>();
         if (!HorizontalScale)
             tr.sizeDelta = new Vector2(HeigthOrWidth, (ScaleValue * children.Length / UnwantedChildren));
         else if (HorizontalScale)
             tr.sizeDelta = new Vector2((ScaleValue * children.Length / UnwantedChildren), HeigthOrWidth);
     }
+
 }
