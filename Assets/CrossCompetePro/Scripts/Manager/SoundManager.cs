@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
 {
-    
+
+    [SerializeField]
+    private AudioSource audioSource;
+
     public AudioClip[] audioClip;
 
     private bool isPlaying;
 
     private float clipTime = 1;
 
+    
+
     public void PlaySound(AudioClip clip)
     {
         if (!isPlaying)
         {
             isPlaying = true;
-            AudioSource.PlayClipAtPoint(clip, Vector3.zero);
+            audioSource.clip = clip;
+            audioSource.Play();
             StartCoroutine(WaitForSound());
         }
           
@@ -24,7 +30,8 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlaySoundDeterminer(AudioClip clip)
     {
-            AudioSource.PlayClipAtPoint(clip, Vector3.zero);
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     IEnumerator WaitForSound()

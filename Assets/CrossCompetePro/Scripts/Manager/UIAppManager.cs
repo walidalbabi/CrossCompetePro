@@ -115,6 +115,31 @@ public class UIAppManager : Singleton<UIAppManager>
     private GameObject Settings;
 
 
+    //Canvasas Vars
+    CanvasGroup can;
+    CanvasGroup panelsCanv;
+    CanvasGroup choosePanelsColor;
+    CanvasGroup resetAllProgressPanelColor;
+    CanvasGroup changePasswordPanelColor;
+    CanvasGroup editWeighPanelColor;
+    CanvasGroup editTallPanelColor;
+    CanvasGroup editAgePanelColor;
+    CanvasGroup feedbackPanelColor;
+
+    private void Start()
+    {
+        can = Login_SignUp_Btns.GetComponent<CanvasGroup>();
+        panelsCanv = Panels.GetComponent<CanvasGroup>();
+        choosePanelsColor = ChoosePanels.GetComponent<CanvasGroup>();
+        resetAllProgressPanelColor = ResetAllProgressPanel.GetComponent<CanvasGroup>();
+        changePasswordPanelColor = ChangePasswordPanel.GetComponent<CanvasGroup>();
+        editWeighPanelColor = EditWeighPanel.GetComponent<CanvasGroup>();
+        editTallPanelColor = EditTallPanel.GetComponent<CanvasGroup>();
+        editAgePanelColor = EditAgePanel.GetComponent<CanvasGroup>();
+        feedbackPanelColor = feedbackPanel.GetComponent<CanvasGroup>();
+    }
+
+
     private void Update()
     {
         WeightText.text = WeightSlider.value + " Kg";
@@ -168,7 +193,7 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void OnLoadingEnd()
     {
-        var can = Login_SignUp_Btns.GetComponent<CanvasGroup>();
+     
         can.alpha = 0f;
         can.LeanAlpha(1f, 0.2f);
         if (OnboardPanel.activeInHierarchy || Home.activeInHierarchy)
@@ -189,10 +214,10 @@ public class UIAppManager : Singleton<UIAppManager>
         }
 
 
-        var panelsColor = Panels.GetComponent<CanvasGroup>();
+   
         Panels.transform.LeanMoveLocal(new Vector2(-2880f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        panelsCanv.alpha = 0f;
+        panelsCanv.LeanAlpha(1f, 0.15f);
     }
     public void ShowRegister()
     {
@@ -201,11 +226,9 @@ public class UIAppManager : Singleton<UIAppManager>
             Panels.SetActive(false);
             HomePanels.SetActive(false);
         }
-
-        var panelsColor = Panels.GetComponent<CanvasGroup>();
         Panels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        panelsCanv.alpha = 0f;
+        panelsCanv.LeanAlpha(1f, 0.15f);
     }
 
     public void HideUnHidePass()
@@ -221,21 +244,18 @@ public class UIAppManager : Singleton<UIAppManager>
             Panels.SetActive(false);
             HomePanels.SetActive(false);
         }
-
-        var panelsColor = Panels.GetComponent<CanvasGroup>();
         Panels.transform.LeanMoveLocal(new Vector2(-4320f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        panelsCanv.alpha = 0f;
+        panelsCanv.LeanAlpha(1f, 0.15f);
     }
 
     public void ShowChooseWeight()
     {
         Panels.SetActive(false);
         ChooseParentPanel.SetActive(true);
-        var panelsColor = ChoosePanels.GetComponent<CanvasGroup>();
         ChoosePanels.transform.LeanMoveLocal(new Vector2(0, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        choosePanelsColor.alpha = 0f;
+        choosePanelsColor.LeanAlpha(1f, 0.15f);
         ChooseLittleSlider.transform.localScale = new Vector2(0f, 0f);
         ChooseLittleSlider.transform.LeanMoveLocal(new Vector2(-540.0194f, 0f), 0f);
         ChooseLittleSlider.transform.LeanScale(new Vector2(1f, 1f), 0.2f);
@@ -244,10 +264,9 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowChooseTall()
     {
-        var panelsColor = ChoosePanels.GetComponent<CanvasGroup>();
         ChoosePanels.transform.LeanMoveLocal(new Vector2(-1440f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        choosePanelsColor.alpha = 0f;
+        choosePanelsColor.LeanAlpha(1f, 0.15f);
         ChooseLittleSlider.transform.localScale = new Vector2(0f, 0f);
         ChooseLittleSlider.transform.LeanMoveLocal(new Vector2(-180.0583f, 0f), 0f);
         ChooseLittleSlider.transform.LeanScale(new Vector2(1f, 1f), 0.2f);
@@ -256,10 +275,9 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowChooseAge()
     {
-        var panelsColor = ChoosePanels.GetComponent<CanvasGroup>();
         ChoosePanels.transform.LeanMoveLocal(new Vector2(-2880f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        choosePanelsColor.alpha = 0f;
+        choosePanelsColor.LeanAlpha(1f, 0.15f);
         ChooseLittleSlider.transform.localScale = new Vector2(0f, 0f);
         ChooseLittleSlider.transform.LeanMoveLocal(new Vector2(179.9027f, 0f), 0f);
         ChooseLittleSlider.transform.LeanScale(new Vector2(1f, 1f), 0.2f);
@@ -268,10 +286,9 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowGender()
     {
-        var panelsColor = ChoosePanels.GetComponent<CanvasGroup>();
         ChoosePanels.transform.LeanMoveLocal(new Vector2(-4320f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        choosePanelsColor.alpha = 0f;
+        choosePanelsColor.LeanAlpha(1f, 0.15f);
         ChooseLittleSlider.transform.localScale = new Vector2(0f, 0f);
         ChooseLittleSlider.transform.LeanMoveLocal(new Vector2(539.8637f, 0f), 0f);
         ChooseLittleSlider.transform.LeanScale(new Vector2(1f, 1f), 0.2f);
@@ -280,10 +297,9 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowChooseYourPlan()
     {
-        var panelsColor = ChoosePanels.GetComponent<CanvasGroup>();
         ChoosePanels.transform.LeanMoveLocal(new Vector2(-5760f, 0f), 0.1f);
-        panelsColor.alpha = 0f;
-        panelsColor.LeanAlpha(1f, 0.15f);
+        choosePanelsColor.alpha = 0f;
+        choosePanelsColor.LeanAlpha(1f, 0.15f);
         ChooseLittleSlider.transform.parent.gameObject.SetActive(false);
         ChooseText.gameObject.SetActive(false);
     }
@@ -412,18 +428,16 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowResetAllProgress(bool on)
     {
-
-        var panelsColor = ResetAllProgressPanel.GetComponent<CanvasGroup>();
         if (on)
         {
             ResetAllProgressPanel.SetActive(true);
-            panelsColor.alpha = 0f;
-            panelsColor.LeanAlpha(1f, 0.4f);
+            resetAllProgressPanelColor.alpha = 0f;
+            resetAllProgressPanelColor.LeanAlpha(1f, 0.4f);
         }
         else
         {
-            panelsColor.alpha = 1f;
-            panelsColor.LeanAlpha(0f, 0.4f);
+            resetAllProgressPanelColor.alpha = 1f;
+            resetAllProgressPanelColor.LeanAlpha(0f, 0.4f);
             ResetAllProgressPanel.SetActive(false);
         }
 
@@ -431,18 +445,16 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowChangePassword(bool on)
     {
-
-        var panelsColor = ChangePasswordPanel.GetComponent<CanvasGroup>();
         if (on)
         {
             ChangePasswordPanel.SetActive(true);
-            panelsColor.alpha = 0f;
-            panelsColor.LeanAlpha(1f, 0.4f);
+            changePasswordPanelColor.alpha = 0f;
+            changePasswordPanelColor.LeanAlpha(1f, 0.4f);
         }
         else
         {
-            panelsColor.alpha = 1f;
-            panelsColor.LeanAlpha(0f, 0.4f);
+            changePasswordPanelColor.alpha = 1f;
+            changePasswordPanelColor.LeanAlpha(0f, 0.4f);
             ChangePasswordPanel.SetActive(false);
         }
 
@@ -450,18 +462,16 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowEditWeigh(bool on)
     {
-
-        var panelsColor = EditWeighPanel.GetComponent<CanvasGroup>();
         if (on)
         {
             EditWeighPanel.SetActive(true);
-            panelsColor.alpha = 0f;
-            panelsColor.LeanAlpha(1f, 0.4f);
+            editWeighPanelColor.alpha = 0f;
+            editWeighPanelColor.LeanAlpha(1f, 0.4f);
         }
         else
         {
-            panelsColor.alpha = 1f;
-            panelsColor.LeanAlpha(0f, 0.4f);
+            editWeighPanelColor.alpha = 1f;
+            editWeighPanelColor.LeanAlpha(0f, 0.4f);
             EditWeighPanel.SetActive(false);
         }
 
@@ -469,18 +479,16 @@ public class UIAppManager : Singleton<UIAppManager>
 
     public void ShowEditTall(bool on)
     {
-
-        var panelsColor = EditTallPanel.GetComponent<CanvasGroup>();
         if (on)
         {
             EditTallPanel.SetActive(true);
-            panelsColor.alpha = 0f;
-            panelsColor.LeanAlpha(1f, 0.4f);
+            editTallPanelColor.alpha = 0f;
+            editTallPanelColor.LeanAlpha(1f, 0.4f);
         }
         else
         {
-            panelsColor.alpha = 1f;
-            panelsColor.LeanAlpha(0f, 0.4f);
+            editTallPanelColor.alpha = 1f;
+            editTallPanelColor.LeanAlpha(0f, 0.4f);
             EditTallPanel.SetActive(false);
         }
 
@@ -490,17 +498,17 @@ public class UIAppManager : Singleton<UIAppManager>
     public void ShowEditAge(bool on)
     {
 
-        var panelsColor = EditAgePanel.GetComponent<CanvasGroup>();
+
         if (on)
         {
             EditAgePanel.SetActive(true);
-            panelsColor.alpha = 0f;
-            panelsColor.LeanAlpha(1f, 0.4f);
+            editAgePanelColor.alpha = 0f;
+            editAgePanelColor.LeanAlpha(1f, 0.4f);
         }
         else
         {
-            panelsColor.alpha = 1f;
-            panelsColor.LeanAlpha(0f, 0.4f);
+            editAgePanelColor.alpha = 1f;
+            editAgePanelColor.LeanAlpha(0f, 0.4f);
             EditAgePanel.SetActive(false);
         }
 
@@ -601,17 +609,16 @@ public class UIAppManager : Singleton<UIAppManager>
     public void ShowFeedback(bool on)
     {
 
-        var panelsColor = feedbackPanel.GetComponent<CanvasGroup>();
         if (on)
         {
             feedbackPanel.SetActive(true);
-            panelsColor.alpha = 0f;
-            panelsColor.LeanAlpha(1f, 0.4f);
+            feedbackPanelColor.alpha = 0f;
+            feedbackPanelColor.LeanAlpha(1f, 0.4f);
         }
         else
         {
-            panelsColor.alpha = 1f;
-            panelsColor.LeanAlpha(0f, 0.4f);
+            feedbackPanelColor.alpha = 1f;
+            feedbackPanelColor.LeanAlpha(0f, 0.4f);
             feedbackPanel.SetActive(false);
         }
 
@@ -677,23 +684,52 @@ public class UIAppManager : Singleton<UIAppManager>
             Canvas.SetActive(true);
     }
 
-    public void OnFundamental()
+    public void OnFundamental(bool isEditing)
     {
-        ShowHome();
+        if (isEditing)
+        {
+            ShowSettings();
+        }
+        else
+        {
+            ShowHome();
+        }
+
     }
 
-    public void OnIntermediate()
+    public void OnIntermediate(bool isEditing)
     {
-        ShowHome();
+        if (isEditing)
+        {
+            ShowSettings();
+        }
+        else
+        {
+            ShowHome();
+        }
     }
 
-    public void OnAdvanced()
+    public void OnAdvanced(bool isEditing)
     {
-        ShowHome();
+        if (isEditing)
+        {
+            ShowSettings();
+        }
+        else
+        {
+            ShowHome();
+        }
     }
 
-    public void OnPro()
+    public void OnPro(bool isEditing)
     {
-        ShowHome();
+        if (isEditing)
+        {
+            ShowSettings();
+        }
+        else
+        {
+            ShowHome();
+        }
     }
 }

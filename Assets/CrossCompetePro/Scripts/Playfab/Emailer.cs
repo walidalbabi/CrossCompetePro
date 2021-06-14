@@ -11,9 +11,9 @@ public class Emailer : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button btnSubmit;
     [SerializeField] bool sendDirect;
 
-    const string kSenderEmailAddress = "albabiwalid@gmail.com";
-    const string kSenderPassword = "walid1234WALID";
-    const string kReceiverEmailAddress = "albabiwalid@gmail.com";
+    const string kSenderEmailAddress = "";
+    const string kSenderPassword = "";
+    const string kReceiverEmailAddress = "";
 
     // Method 2: Server request
     const string url = "https://crosscompetepro.000webhostapp.com/emailer.php";
