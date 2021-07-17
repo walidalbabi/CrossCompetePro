@@ -166,7 +166,11 @@ public class TimerManager : MonoBehaviour
                 switch (determiner)
                 {
                     case 1:
-                        txt.text = "Rest";
+                            if(countForRounds != 0)
+                            txt.text = "Rest";
+                            else
+                            txt.text = "Get Ready!";
+
                         break;
                     case 2:
                         txt.text = "Seconds";
@@ -187,7 +191,10 @@ public class TimerManager : MonoBehaviour
                 switch (determiner)
                 {
                     case 1:
-                        txt.text = "Rest";
+                        if (countForRounds != 0)
+                            txt.text = "Rest";
+                        else
+                            txt.text = "Get Ready!";
                         break;
                     case 2:
                         txt.text = "Seconds";
@@ -221,7 +228,10 @@ public class TimerManager : MonoBehaviour
                 switch (determiner)
                 {
                     case 1:
-                        txt.text = "Rest";
+                        if (countForRounds != 0)
+                            txt.text = "Rest";
+                        else
+                            txt.text = "Get Ready!";
                         break;
                     case 2:
                         txt.text = "Seconds";
@@ -411,12 +421,13 @@ public class TimerManager : MonoBehaviour
         {
             if (countForRounds != 0)
                 SoundManager.instance.PlaySoundDeterminer(SoundManager.instance.audioClip[2]);
-            amrapTotalTime = AmrapManager.instance._amrap[countForRounds].restTime;
-            if (amrapTotalTime == 0)
-                if (rounder == 1)
-                    amrapTotalTime = 4;
-                else
-                    amrapTotalTime = 1;
+            
+            amrapTotalTime = countForRounds == 0 ? 10f : AmrapManager.instance._amrap[countForRounds].restTime;
+            //if (amrapTotalTime == 0)
+            //    if (rounder == 1)
+            //        amrapTotalTime = 4;
+            //    else
+            //        amrapTotalTime = 1;
             timerrr = TimeSpan.FromSeconds(amrapTotalTime);
             AmrapFillSlider.maxValue = amrapTotalTime;
         }
@@ -460,7 +471,7 @@ public class TimerManager : MonoBehaviour
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[1]);
             else if (amrapTotalTime < 4)
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[0]);
-            else if (amrapTotalTime > halfTime && amrapTotalTime < halfTime + 0.9)
+            else if (amrapTotalTime > halfTime && amrapTotalTime < halfTime + 0.9 && countForRounds != 0)
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[4]);
             else if (amrapTotalTime > 10f && amrapTotalTime < 10.9f)
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[5]);
@@ -548,14 +559,15 @@ public class TimerManager : MonoBehaviour
             if (countForRounds != 0)
                 SoundManager.instance.PlaySoundDeterminer(SoundManager.instance.audioClip[2]);
 
-            ForTimeTotalTime = ForTimeManager.instance.rest;
-            if (ForTimeTotalTime == 0 && countForRounds > 0)
-            {
-                ForTimeTotalTime = 4;
-            }
+            ForTimeTotalTime = countForRounds == 0 ? 10f : ForTimeManager.instance.rest;
+           
+            //if (ForTimeTotalTime == 0 && countForRounds > 0)
+            //{
+            //    ForTimeTotalTime = 4;
+            //}
 
-            if (countForRounds == 0)
-                ForTimeTotalTime = 4;
+            //if (countForRounds == 0)
+            //    ForTimeTotalTime = 4;
 
             timerrr = TimeSpan.FromSeconds(ForTimeTotalTime);
             ForTimeFillSlider.maxValue = ForTimeTotalTime;
@@ -596,7 +608,7 @@ public class TimerManager : MonoBehaviour
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[1]);
             else if (ForTimeTotalTime < 4)
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[0]);
-            else if (ForTimeTotalTime > halfTime && ForTimeTotalTime < halfTime + 0.9)
+            else if (ForTimeTotalTime > halfTime && ForTimeTotalTime < halfTime + 0.9 && countForRounds != 0)
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[4]);
             else if (ForTimeTotalTime > 10f && ForTimeTotalTime < 10.9f)
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[5]);
@@ -792,14 +804,16 @@ public class TimerManager : MonoBehaviour
         {
             if (countForRounds != 0)
                 SoundManager.instance.PlaySoundDeterminer(SoundManager.instance.audioClip[2]);
-            TABATATotalTime = TABATAManager.instance.rest;
-            if (TABATATotalTime == 0 && countForRounds > 0)
-            {
-                TABATATotalTime = 4;
-            }
+           
+            TABATATotalTime = countForRounds == 0 ? 10f : TABATAManager.instance.rest;
 
-            if (countForRounds == 0)
-                TABATATotalTime = 4;
+            //if (TABATATotalTime == 0 && countForRounds > 0)
+            //{
+            //    TABATATotalTime = 4;
+            //}
+
+            //if (countForRounds == 0)
+            //    TABATATotalTime = 4;
 
             timerrr = TimeSpan.FromSeconds(TABATATotalTime);
             TABATAFillSlider.maxValue = TABATATotalTime;
@@ -840,7 +854,7 @@ public class TimerManager : MonoBehaviour
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[1]);
             else if (TABATATotalTime < 4)
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[0]);
-            else if (TABATATotalTime > halfTime && TABATATotalTime < halfTime + 0.9)
+            else if (TABATATotalTime > halfTime && TABATATotalTime < halfTime + 0.9 && countForRounds != 0)
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[4]);
             else if (TABATATotalTime > 10f && TABATATotalTime < 10.9f)
                 SoundManager.instance.PlaySound(SoundManager.instance.audioClip[5]);

@@ -93,6 +93,8 @@ public class UIAppManager : Singleton<UIAppManager>
     [SerializeField]
     private GameObject HomePanels;
     [SerializeField]
+    private GameObject ExercicePanels;
+    [SerializeField]
     private GameObject ProfilePanels;
     [SerializeField]
     private GameObject TimerPanels;
@@ -125,6 +127,7 @@ public class UIAppManager : Singleton<UIAppManager>
     CanvasGroup editTallPanelColor;
     CanvasGroup editAgePanelColor;
     CanvasGroup feedbackPanelColor;
+    CanvasGroup exercicePanelsColor;
 
     private void Start()
     {
@@ -137,6 +140,7 @@ public class UIAppManager : Singleton<UIAppManager>
         editTallPanelColor = EditTallPanel.GetComponent<CanvasGroup>();
         editAgePanelColor = EditAgePanel.GetComponent<CanvasGroup>();
         feedbackPanelColor = feedbackPanel.GetComponent<CanvasGroup>();
+        exercicePanelsColor = ExercicePanels.GetComponent<CanvasGroup>();
     }
 
 
@@ -325,6 +329,50 @@ public class UIAppManager : Singleton<UIAppManager>
         //Color lerpColor = new Color(196f, 148f, 48f);
         FooterImg[0].sprite = PressedImg[0];
         FooterText[0].color = new Color(196f / 255f, 148f / 255f, 48f / 255f); ;
+    }
+
+    public void GoToWorkout()
+    {
+        Panels.SetActive(false);
+        ChooseParentPanel.SetActive(false);
+        Home.SetActive(true);
+
+        exercicePanelsColor.alpha = 0;
+        ExercicePanels.transform.LeanMoveLocalX(0f, 0.2f);
+        exercicePanelsColor.LeanAlpha(1f, 1f);
+    }
+
+    public void GoToWarmUp()
+    {
+        Panels.SetActive(false);
+        ChooseParentPanel.SetActive(false);
+        Home.SetActive(true);
+
+        exercicePanelsColor.alpha = 0;
+        ExercicePanels.transform.LeanMoveLocalX(-1439f, 0.2f);
+        exercicePanelsColor.LeanAlpha(1f, 1f);
+    }
+
+    public void GoToStrengh()
+    {
+        Panels.SetActive(false);
+        ChooseParentPanel.SetActive(false);
+        Home.SetActive(true);
+
+        exercicePanelsColor.alpha = 0;
+        ExercicePanels.transform.LeanMoveLocalX(-2878f, 0.2f);
+        exercicePanelsColor.LeanAlpha(1f, 1f);
+    }
+
+    public void GoToWOD()
+    {
+        Panels.SetActive(false);
+        ChooseParentPanel.SetActive(false);
+        Home.SetActive(true);
+
+        exercicePanelsColor.alpha = 0;
+        ExercicePanels.transform.LeanMoveLocalX(-4317f, 0.2f);
+        exercicePanelsColor.LeanAlpha(1f, 1f);
     }
 
     public void ShowProfile()
